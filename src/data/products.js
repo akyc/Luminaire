@@ -44,6 +44,42 @@ const products = [
         price: 6930,
         category: 8,
     },
+    {
+        id: 6,
+        article: 'a055302',
+        brand: 2,
+        name: 'Настенный светильник',
+        img: 'https://cdn.minimir.ru/images/catalog/1a055302_0001.jpg',
+        price: 3250,
+        category: 10,
+    },
+    {
+        id: 7,
+        article: 'a059261',
+        brand: 2,
+        name: 'Настенный светильник',
+        img: 'https://cdn.minimir.ru/images/catalog/nastennyy-svetilnik-3317-kantoor-graphite-a059261_0001.jpg',
+        price: 6010,
+        category: 10,
+    },
+    {
+        id: 'a059263',
+        article: 'a059263',
+        brand: 2,
+        name: 'Потолочный светильник',
+        img: 'https://cdn.minimir.ru/images/catalog/1a059263_0001.jpg',
+        price: 32000,
+        category: 6,
+    },
+    {
+        id: 'a057696',
+        article: 'a057696',
+        brand: 2,
+        name: 'Потолочная люстра со стеклянными плафонами',
+        img: 'https://cdn.minimir.ru/images/catalog/1a057696_0001.jpg',
+        price: 27100,
+        category: 6,
+    },
 ];
 
 export function getProducts() {

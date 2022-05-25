@@ -1,20 +1,20 @@
 import React from 'react'
-import Header from './components/Header';
-import Slides from './components/Slides';
-import Categories from './components/Categories';
-import ProductsGrid from './components/ProductsGrid';
-import Footer from './components/Footer';
+import Header from '../components/Header';
+import Slides from '../components/Slides';
+import Categories from '../components/Categories';
+import ProductsGrid from '../components/ProductsGrid';
+import Footer from '../components/Footer';
 
-export default function Home() {
+export default function Home(props) {
     return (
-        <div>
-            <Header cart={this.state.cart} onRemove={this.removeFromeCart} />
-            <Slides itemes={this.state.slides} />
-            <Categories categories={this.state.activeCategories} chooseCategory={this.chooseCategory} />
+        <div className='app'>
+            <Header cart={props.state.cart} onRemove={props.removeFromeCart} />
+            <Slides itemes={props.state.slides} />
+            <Categories categories={props.state.activeCategories} chooseCategory={props.chooseCategory} selectedCategory={props.state.selectedCategory} />
             <ProductsGrid
-                products={this.state.activeProducts}
-                categories={this.state.categories}
-                onAdd={this.addToCart}
+                products={props.state.activeProducts}
+                categories={props.state.categories}
+                onAdd={props.addToCart}
             />
             <Footer />
         </div>

@@ -18,6 +18,10 @@ body {
   font-family: var(--font);
   font-weight: 300;
 }
+a {
+  text-decoration: none;
+  color: #212121;
+}
 .app {
   width: 1280px;
   margin: 0 auto;
@@ -41,6 +45,10 @@ header .nav li {
   display: inline;
   margin-left: 30px;
   transition: opacity .5s ease-in-out;
+}
+header .nav li a {
+  text-decoration: none;
+  color: var(--text-color);
 }
 header .nav li:hover{
   opacity: .5;
@@ -156,10 +164,11 @@ header .nav li.cart-button small{
 }
 .grid__container{
   display: flex;
+  flex-wrap:wrap;
   margin: 0 -10px;
 }
 .grid__item{
-  width: 20%;
+  width: calc( 100% / 5 - 20px);
   padding: 10px;
 
 }
@@ -211,11 +220,38 @@ footer{
   justify-content: space-between;
   font-size: .725rem;
 }
-
+.text-page{
+  padding: var(--section-padding);
+}
+.text-page h1{
+ font-size: 1.5rem;
+ margin-bottom: 3rem;
+}
+.text-page p{
+  margin-bottom:1rem;
+  line-height: 1.35;
+}
+.text-page ul {
+  padding-left: 2rem;
+}
 @media (prefers-color-scheme: dark) {
   body{
     background: #1a1e23;
     color: #fff;
+  }
+  a{
+    color: #fff;
+  }
+  header .nav li a{
+    color: #fff;
+  }
+  header .nav li.cart-button{
+    color: #fff;
+    background: #2d343c;
+  }
+  header .nav li.cart-button.active{
+    background: #fff;
+    color: #212121;
   }
   .grid__item .add-basket{
     border: 1px solid #fff;

@@ -29,6 +29,11 @@ const categories = [
         name: 'Уличные фонари',
         parent: 2,
     },
+    {
+        id: 10,
+        name: 'Настенные светильники',
+        parent: 1,
+    },
 ];
 
 export function getCategories() {

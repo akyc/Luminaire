@@ -7,7 +7,6 @@ import { getSlides } from './data/slides';
 import { getCategories } from './data/categories';
 import { getBrands } from './data/brands';
 
-
 import './App.css';
 export default class App extends Component {
   constructor(props) {
@@ -20,6 +19,7 @@ export default class App extends Component {
       products: getProducts(),
       activeCategories: [],
       activeProducts: [],
+      selectedCategory: 0
     }
     this.addToCart = this.addToCart.bind(this)
     this.removeFromeCart = this.removeFromeCart.bind(this)
@@ -34,9 +34,8 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home state={this.state} />}>
-            <Route path="about" element={<About state={this.state} />} />
-          </Route>
+          <Route path="/" element={<Home state={this.state} addToCart={this.addToCart} removeFromeCart={this.removeFromeCart} chooseCategory={this.chooseCategory} />} />
+          <Route path="/about" element={<About state={this.state} />} />
         </Routes>
       </BrowserRouter>
     );
@@ -75,6 +74,7 @@ export default class App extends Component {
     } else {
       this.setState({ activeProducts: this.state.products.filter(el => el.category === categoryId) })
     }
+    this.setState({ selectedCategory: categoryId })
   }
   getActiveProducts() {
     this.state.activeProducts = [...this.state.products]
