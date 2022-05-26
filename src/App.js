@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from './routes/about';
 import Home from './routes/home';
+import Catalog from './routes/catalog';
 import { getProducts } from './data/products';
 import { getSlides } from './data/slides';
 import { getCategories } from './data/categories';
@@ -36,6 +37,7 @@ export default class App extends Component {
         <Routes>
           <Route path="/" element={<Home state={this.state} addToCart={this.addToCart} removeFromeCart={this.removeFromeCart} chooseCategory={this.chooseCategory} />} />
           <Route path="/about" element={<About state={this.state} />} />
+          <Route path="/catalog" element={<Catalog state={this.state} />} />
         </Routes>
       </BrowserRouter>
     );

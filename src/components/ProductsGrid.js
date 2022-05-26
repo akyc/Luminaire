@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProducGridItem from './ProducGridItem';
+import Loader from './Loader';
 
-class ProductsGrid extends Component {
-    render() {
-        return (
-            <div className='grid__container'>
-                {this.props.products.map((el, i) => {
-                    let categoryName
-                    // categroyName = this.props.categories.filter(el => el.id === categoryId)[0]?.name || ''
-                    for (let category of this.props.categories) {
-                        if (category.id === el.category) {
-                            categoryName = category.name
-                        }
+export default function ProductsGrid(props) {
+    const [isLoading, setLoading] = useState(true);
+    useEffect(() => {
+        setTimeout(function () {
+            setLoading(isLoading => !isLoading)
+        }, 2500)
+    }, [])
+    return (<div className='grid__container'>
+        {isLoading && props.products.map((el, i) => <Loader key={i} />)}
+        {!isLoading ?
+            (props.products.map((el, i) => {
+                let categoryName
+                for (let category of props.categories) {
+                    if (category.id === el.category) {
+                        categoryName = category.name
                     }
-                    return (<ProducGridItem
-                        key={i}
-                        item={el}
-                        category={categoryName}
-                        onAdd={this.props.onAdd}
-                    />)
-                })}
-            </div>
-        );
-    }
-}
+                }
+                return (<ProducGridItem
+                    key={i}
+                    item={el}
+                    category={categoryName}
+                    onAdd={props.onAdd}
+                />)
+            })
+            ) : null
+        }
 
-export default ProductsGrid;
+    </div>
+    );
+}

@@ -21,27 +21,21 @@ const showAmount = (props) => {
         return (<small>{new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 }).format(amount)}</small>)
     }
 }
-document.body.addEventListener('mousedown', function (e) {
-    console.log(e.target)
-    const cart = document.querySelector('.cart')
-    console.log(e.target.contains(cart))
-})
 
 export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
-    let wrapperRef = useRef(null);
-    useOutsideClick(wrapperRef);
-    const cart = document.querySelector('.cart')
-    function useOutsideClick(ref) {
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef);
+    function useOutsideAlerter(ref) {
         useEffect(() => {
             function handleClickOutside(event) {
-                if (ref.current && !ref.current.contains(event.target) && !ref.current.contains(cart) && cartOpen) {
-                    setCartOpen(false)
+                if (ref.current && !ref.current.contains(event.target) && cartOpen) {
+                    setCartOpen(false);
                 }
             }
-            document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener('mousedown', handleClickOutside);
             return () => {
-                document.removeEventListener("mousedown", handleClickOutside);
+                document.removeEventListener('mousedown', handleClickOutside);
             };
         }, [ref]);
     }
@@ -56,13 +50,15 @@ export default function Header(props) {
                     <NavLink className={({ isActive }) => isActive ? "active" : ""} to="/about">
                         О нас
                     </NavLink></li>
-                <li>Каталог</li>
-                <li>Контакты</li>
-                <li ref={wrapperRef}
+                <li><NavLink className={({ isActive }) => isActive ? "active" : ""} to="/catalog">
+                    Каталог
+                </NavLink></li>
+                {/* <li>Контакты</li> */}
+                <li
                     onClick={() => setCartOpen(cartOpen = !cartOpen)} className={`cart-button ${cartOpen ? 'active' : ''}`}
                 >{showAmount(props)} <RiShoppingCartFill /></li>
             </ul>
             {cartOpen ? <div className='cart' ref={wrapperRef}>{props.cart.length > 0 ? showCart(props) : emptyCart()}</div> : ''}
-        </header>
+        </header >
     )
 }
