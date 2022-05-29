@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from './routes/about';
 import Home from './routes/home';
 import Catalog from './routes/catalog';
+import Product from './routes/product';
+import Contacts from './routes/contacts';
 import { getProducts } from './data/products';
 import { getSlides } from './data/slides';
 import { getCategories } from './data/categories';
@@ -36,8 +38,11 @@ export default class App extends Component {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home state={this.state} addToCart={this.addToCart} removeFromeCart={this.removeFromeCart} chooseCategory={this.chooseCategory} />} />
-          <Route path="/about" element={<About state={this.state} />} />
-          <Route path="/catalog" element={<Catalog state={this.state} />} />
+          <Route path="/about" element={<About state={this.state} addToCart={this.addToCart} removeFromeCart={this.removeFromeCart} />} />
+          <Route path="/catalog" element={<Catalog state={this.state} addToCart={this.addToCart} removeFromeCart={this.removeFromeCart} chooseCategory={this.chooseCategory} />} />
+          <Route path="/catalog/:productId" element={<Product state={this.state} addToCart={this.addToCart} removeFromeCart={this.removeFromeCart} />} />
+          <Route path="/contacts" element={<Contacts state={this.state} addToCart={this.addToCart} removeFromeCart={this.removeFromeCart} />} />
+
         </Routes>
       </BrowserRouter>
     );

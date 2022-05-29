@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class ProducGridItem extends Component {
     render() {
         return (
             <div className='grid__item'>
-                <img src={this.props.item.img} alt={this.props.item.name} />
+                <Link to={'/catalog/' + this.props.item.article}><img src={this.props.item.img} alt={this.props.item.name} /></Link>
                 <div className="product-info">
                     <small>{this.props.category}</small>
                     <div className='controls'>

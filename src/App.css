@@ -26,6 +26,21 @@ a {
   width: 1280px;
   margin: 0 auto;
 }
+.btn {
+  font-size: 14px;
+  padding: 5px 15px;
+  margin-right: 16px;
+  background: #eee;
+  border-radius: var(--ui-radius);
+  display: inline-flex;
+  align-items: center;
+  transition: all .5s ease;
+}
+.btn:hover{
+    background: #212121;
+    color: #fff;
+    cursor: pointer;
+}
 header {
   padding: var(--section-padding);
   display: flex;
@@ -233,6 +248,21 @@ footer{
 }
 .text-page ul {
   padding-left: 2rem;
+}
+.product-page{
+  padding: var(--section-padding);
+  display: flex;
+  justify-content: space-between;
+}
+.product__img, .product__info{
+  width: 45%;
+}
+.product__img img{
+  display: block;
+  width: 100%;
+}
+#yamaps{
+  min-height: 400px;
 }
 @media (prefers-color-scheme: dark) {
   body{

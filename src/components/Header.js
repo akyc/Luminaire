@@ -13,7 +13,7 @@ const showCart = function (props) {
     )
 }
 
-const emptyCart = () => (<div className="empty-cart"><BsEmojiFrown size='50px' color="#ddd" /><br />Корзина пуста</div>)
+const emptyCart = () => (<div className="empty-cart"><BsEmojiFrown size='50px' color="#ddd" /><br />Корзина пуста<br /><small><Link to={"/catalog"}>Перейти в каталог</Link></small></div>)
 
 const showAmount = (props) => {
     let amount = props.cart.reduce((acc, cur) => acc + cur.count * cur.product.price, 0)
@@ -52,6 +52,9 @@ export default function Header(props) {
                     </NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? "active" : ""} to="/catalog">
                     Каталог
+                </NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? "active" : ""} to="/contacts">
+                    Контакты
                 </NavLink></li>
                 {/* <li>Контакты</li> */}
                 <li
