@@ -21,7 +21,7 @@ export default class App extends Component {
       brands: getBrands(),
       products: getProducts(),
       activeCategories: [],
-      activeProducts: [],
+      activeProducts: getProducts(),
       selectedCategory: 0
     }
     this.addToCart = this.addToCart.bind(this)
@@ -29,8 +29,6 @@ export default class App extends Component {
     this.getActiveCategories = this.getActiveCategories.bind(this)
     this.getActiveProducts = this.getActiveProducts.bind(this)
     this.chooseCategory = this.chooseCategory.bind(this)
-    this.activeCategories = this.getActiveCategories()
-    this.activeProducts = this.getActiveProducts()
   }
 
   render() {
@@ -48,7 +46,6 @@ export default class App extends Component {
     );
   }
   addToCart(product) {
-    //this.setState({ cart: [...this.state.cart, product] })
     let nCart = [...this.state.cart]
     if (nCart.some(el => el.product.id === product.id)) {
       nCart.map((el) => {
@@ -71,7 +68,6 @@ export default class App extends Component {
         accat = [...this.state.activeCategories]
       if (!accat.filter(ac => ac.id === el.category).length) {
         this.state.activeCategories = [...this.state.activeCategories, cat.filter(c => c.id === el.category)[0]]
-
       }
     })
   }
