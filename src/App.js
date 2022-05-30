@@ -27,10 +27,11 @@ export default class App extends Component {
     this.addToCart = this.addToCart.bind(this)
     this.removeFromeCart = this.removeFromeCart.bind(this)
     this.getActiveCategories = this.getActiveCategories.bind(this)
-    this.getActiveProducts = this.getActiveProducts.bind(this)
     this.chooseCategory = this.chooseCategory.bind(this)
   }
-
+  componentWillMount() {
+    this.getActiveCategories()
+  }
   render() {
     return (
       <BrowserRouter>
@@ -46,6 +47,7 @@ export default class App extends Component {
     );
   }
   addToCart(product) {
+    //this.setState({ cart: [...this.state.cart, product] })
     let nCart = [...this.state.cart]
     if (nCart.some(el => el.product.id === product.id)) {
       nCart.map((el) => {
@@ -63,13 +65,14 @@ export default class App extends Component {
     this.setState({ cart: this.state.cart.filter(el => el.product.id !== productId) })
   }
   getActiveCategories() {
-    this.state.products.forEach(el => {
-      let cat = [...this.state.categories],
-        accat = [...this.state.activeCategories]
-      if (!accat.filter(ac => ac.id === el.category).length) {
-        this.state.activeCategories = [...this.state.activeCategories, cat.filter(c => c.id === el.category)[0]]
+    let catsList = [...this.state.activeCategories]
+    this.state.products.forEach(product => {
+      let cat = [...this.state.categories];
+      if (!catsList.find(category => category.id === product.category)) {
+        catsList.push(cat.find(c => c.id === product.category))
       }
     })
+    this.setState({ activeCategories: [...catsList] });
   }
   chooseCategory(categoryId) {
     if (categoryId === 0) {
@@ -78,8 +81,5 @@ export default class App extends Component {
       this.setState({ activeProducts: this.state.products.filter(el => el.category === categoryId) })
     }
     this.setState({ selectedCategory: categoryId })
-  }
-  getActiveProducts() {
-    this.state.activeProducts = [...this.state.products]
   }
 }
