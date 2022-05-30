@@ -1,6 +1,6 @@
 ## Luminaire
 Интернет-магазин освещения.
-[Демо]()
+[Демо](https://luminous-tanuki-517cba.netlify.app/)
 
 ## Технологии
 
